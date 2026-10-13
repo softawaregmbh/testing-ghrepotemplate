@@ -1,0 +1,217 @@
+<header class="bg-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-gray-900">Start</h1>
+    </div>
+</header>
+<main>
+    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <!-- Replace with your content -->
+        <div class="px-4 py-6 sm:px-0">
+            <h2 class="mb-2 mt-4 text-2xl font-bold text-gray-900">General Rules</h2>
+            <ul class="list-disc px-6">
+                <li>
+                    Follow
+                    <a class="text-blue-600" href="https://angular.dev/style-guide">Angular's Styleguide</a>
+                </li>
+                <li>Keep it simple</li>
+                <li>Use Kendo components whenever possible</li>
+                <li>Use Tailwind for layouting</li>
+            </ul>
+
+            <h2 class="mb-2 mt-4 text-2xl font-bold text-gray-900">Included Libraries</h2>
+            <ul class="list-disc px-6">
+                <li>
+                    <a class="text-blue-600" href="https://www.telerik.com/kendo-angular-ui">Kendo UI</a>
+                    : Component Lib (e.g. grid, popups, inputs, ...)
+                </li>
+                <li>
+                    <a class="text-blue-600" href="https://tailwindcss.com/">Tailwind</a>
+                    : Styling for custom components & Layouting
+                </li>
+                <li>
+                    <a class="text-blue-600" href="https://fontawesome.com/">Fontawesome</a>
+                    : Icons like
+                    <fa-icon [icon]="['far', 'user']"></fa-icon>
+                </li>
+                <li>
+                    <a class="text-blue-600" href="https://github.com/ngx-translate/core">ngx-translate</a>
+                    : Translation Lib
+                </li>
+                <li>
+                    <a class="text-blue-600" href="https://moment.github.io/luxon/#/">luxon</a>
+                    : DateTime
+                </li>
+            </ul>
+
+            <h2 class="mb-2 mt-4 text-2xl font-bold text-gray-900">Folder Structure</h2>
+            <ul class="list-disc px-6">
+                <li>
+                    All logically related/connected features of the app should be grouped into subfolders (e.g. admin
+                    features can be grouped in an 'admin' folder)
+                </li>
+                <li>All components should be loaded lazily by default if possible.</li>
+                <li>Lazy loading is handled by 'app.routes.ts'.</li>
+            </ul>
+
+            <h2 class="mb-2 mt-4 text-2xl font-bold text-gray-900">Components</h2>
+            Components should be standalone by default.
+            <br />
+            This template distinguishes between the following types of components
+
+            <ul class="list-disc px-6">
+                <li>
+                    Routed components
+                    <br />
+                    Components that have an active routing configuration in a routing-module (a route to that component
+                    exists).
+                    <br />
+                    Routed components are not shared in any way by default.
+                </li>
+                <li>
+                    Unrouted components
+                    <br />
+                    Components that have no routing configuration (no route to that component exists).
+                    <br />
+                    Unrouted components can be either located inside a parent-component folder or shared within the
+                    containing module.
+                    <br />
+                </li>
+            </ul>
+
+            <h2 class="mb-2 mt-4 text-2xl font-bold text-gray-900">Shared things (services, dtos, models, ...)</h2>
+            The '/shared' folder holds assets like services or models that are used by multiple sub-modules.
+
+            <h2 class="mb-2 mt-4 text-2xl font-bold text-gray-900">Project structure</h2>
+
+            <pre class="bg-gray-200 font-mono">
++-src
+|   favicon.ico
+|   index.html
+|   main.ts
+|
++---app
+|   |   app.component.html
+|   |   app.component.ts
+|   |   app.config.ts <span class="text-green-600">(service/provider configurations)</span>
+|   |   app.icons.ts <span class="text-green-600">(used icons in app, loaded in 'startup.service.ts')</span>
+|   |   app.routes.ts <span class="text-green-600">(routing configurations)</span>
+|   |   startup.service.ts <span class="text-green-600">(service used to init configurations on start up)</span>
+|   |
+|   +---module1 <span class="text-green-600">(lazy loaded, can be deleted)</span>
+|   |   |   module1.routes.ts <span class="text-green-600">(submodule routing)</span>
+|   |   |   module1.component.html
+|   |   |   module1.component.ts
+|   |   |
+|   |   \---routed1 <span class="text-green-600">(routed component)</span>
+|   |       |   routed1.component.html
+|   |       |   routed1.component.ts
+|   |       |
+|   |       +---unrouted1 <span class="text-green-600">(contains unrouted components, only used in the parent component 'routed')</span>
+|   |       |       unrouted1.component.html
+|   |       |       unrouted1.component.ts
+|   |       |
+|   |       \---unrouted2
+|   |               unrouted2.component.html
+|   |               unrouted2.component.ts
+|   |
+|   +---module2 <span class="text-green-600">(lazy loaded submodule, can be deleted)</span>
+|   |   |   module2.routes.ts <span class="text-green-600">(submodule routing)</span>
+|   |   |   module2.component.html
+|   |   |   module2.component.ts
+|   |   |
+|   |   +---shared
+|   |   |   +---components <span class="text-green-600">(contains unrouted components, used in other components, therefore in shared folder)</span>
+|   |   |   |   +---unrouted3
+|   |   |   |   |       unrouted3.component.html
+|   |   |   |   |       unrouted3.component.ts
+|   |   |   |   |
+|   |   |   |   \---unrouted4
+|   |   |   |           unrouted4.component.html
+|   |   |   |           unrouted4.component.ts
+|   |   |   |
+|   |   |   +---dtos <span class="text-green-600">(contains dto interfaces, postfix `.dto.ts`)</span>
+|   |   |   |       user.dto.ts
+|   |   |   |       index.ts
+|   |   |   |
+|   |   |   +---models <span class="text-green-600">(contains other models, postfix `.model.ts` if class, `.interface.ts`, `.type.ts`, or `.enum.ts`)</span>
+|   |   |   |       user.model.ts
+|   |   |   |       index.ts
+|   |   |   |
+|   |   |   \---services
+|   |   |           admin-api.service.ts
+|   |   |
+|   |   +---user-detail
+|   |   |   |   user-detail.component.html
+|   |   |   |   user-detail.component.ts
+|   |   |   |
+|   |   |   +---user-address-info <span class="text-green-600">(is only used in user-detail component, therefore directly inside user-detail folder)</span>
+|   |   |   |       user-address-info.component.html
+|   |   |   |       user-address-info.component.scss
+|   |   |   |       user-address-info.component.ts
+|   |   |   |
+|   |   |   \---user-contact-info <span class="text-green-600">(is only used in user-detail component, therefore directly inside user-detail folder)</span>
+|   |   |           user-contact-info.component.html
+|   |   |           user-contact-info.component.scss
+|   |   |           user-contact-info.component.ts
+|   |   |
+|   |   \---user-list
+|   |           user-list.component.html
+|   |           user-list.component.ts
+|   |
+|   +---shared
+|   |   +---components <span class="text-green-600">(globally shared components)</span>
+|   |   |   |   confirm-dialog.component.ts
+|   |   |   |
+|   |   |   +---button
+|   |   |   |       button.component.html
+|   |   |   |       button.component.scss
+|   |   |   |       button.component.ts
+|   |   |   |
+|   |   |   \---checkbox
+|   |   |           checkbox.component.html
+|   |   |           checkbox.component.scss
+|   |   |           checkbox.component.ts
+|   |   |
+|   |   +---interceptors
+|   |   |       http-error.interceptor.ts
+|   |   |       index.ts
+|   |   |
+|   |   +---models
+|   |   |       api-error.interface.ts
+|   |   |       index.ts
+|   |   |
+|   |   +---services
+|   |   |   |   application-insights.service.ts
+|   |   |   |   auth.service.ts
+|   |   |   |   dialog.service.ts
+|   |   |   |   notification.service.ts
+|   |   |   |   errorhandler.service.ts
+|   |   |   |
+|   |   |   \---generated
+|   |   |           .gitignore
+|   |   |
+|   |   \--- utils
+|   |           dialog.utils.ts
+|   |
+|   \---start <span class="text-green-600">(should be deleted)</span>
+|           start.component.html
+|           start.component.ts
+|
++---assets
+|   |   .gitkeep
+|   |
+|   \---i18n <span class="text-green-600">(translation files, add other languages if needed)</span>
+|           en.json
+|
++---environments
+|       environment.prod.ts
+|       environment.ts
+|
+\---style
+        styles.scss
+        _kendo.scss
+</pre>
+        </div>
+        <!-- /End replace -->
+    </div>
+</main>

@@ -1,0 +1,36 @@
+using softaware.Cqs;
+
+namespace TestingGhrepotemplate.Cqs.Api;
+
+public static class {{ GroupName }}Endpoints
+{
+    public static RouteGroupBuilder Map{{ GroupName }}Endpoints(this RouteGroupBuilder group)
+    {
+        {{~ for request in Requests ~}}
+
+        {{~ if request.HasProperties ~}}
+            {{~ if request.ReturnsNoResult ~}}
+        group.MapPost("{{ request.Name }}", async (IRequestProcessor processor, {{ request.Type }} request, CancellationToken cancellationToken) =>
+        {
+            await processor.HandleAsync(request, cancellationToken);
+        });
+            {{~ else ~}}
+        group.MapPost("{{ request.Name }}", (IRequestProcessor processor, {{ request.Type }} request, CancellationToken cancellationToken) =>
+            processor.HandleAsync(request, cancellationToken));
+            {{~ end ~}}
+        {{~ else ~}}
+            {{~ if request.ReturnsNoResult ~}}
+        group.MapPost("{{ request.Name }}", async (IRequestProcessor processor, CancellationToken cancellationToken) =>
+        {
+            await processor.HandleAsync(new {{ request.Type }}(), cancellationToken);
+        });
+            {{~ else ~}}
+        group.MapPost("{{ request.Name }}", (IRequestProcessor processor, CancellationToken cancellationToken) =>
+            processor.HandleAsync(new {{ request.Type }}(), cancellationToken));
+            {{~ end ~}}
+        {{~ end ~}}
+        {{~ end ~}}
+
+        return group;
+    }
+}

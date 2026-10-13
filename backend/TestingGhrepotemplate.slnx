@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="TestingGhrepotemplate.AppHost/TestingGhrepotemplate.AppHost.csproj" />
+  <Project Path="TestingGhrepotemplate.Cqs.Api.Generator/TestingGhrepotemplate.Cqs.Api.Generator.csproj" />
+  <Project Path="TestingGhrepotemplate.Cqs.Api.Tests/TestingGhrepotemplate.Cqs.Api.Tests.csproj" />
+  <Project Path="TestingGhrepotemplate.Cqs.Api/TestingGhrepotemplate.Cqs.Api.csproj" />
+  <Project Path="TestingGhrepotemplate.Cqs/TestingGhrepotemplate.Cqs.csproj" />
+  <Project Path="TestingGhrepotemplate.EntityFramework/TestingGhrepotemplate.EntityFramework.csproj" Id="e196309f-47aa-4c2d-bb39-cdb952cce5d3" />
+  <Project Path="TestingGhrepotemplate.ServiceDefaults/TestingGhrepotemplate.ServiceDefaults.csproj" Id="ebfda05c-1a32-4259-82b2-65ae263008f7" />
+</Solution>

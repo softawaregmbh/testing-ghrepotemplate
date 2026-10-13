@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <NoWarn>$(NoWarn);CQ0005</NoWarn>
+
+    <!--
+      xunit v3 runs on Microsoft.Testing.Platform: the test project is an executable instead of a
+      library loaded by the VSTest "testhost" process. This matters for the Aspire tests, because
+      Aspire.Hosting.EntityFrameworkCore derives the "dotnet ef" framework argument from the entry
+      assembly. Under VSTest that is testhost, which only ships for net8.0, so the EF migrations
+      resource failed to start against this net10.0 project.
+      The matching "test" section in global.json makes "dotnet test" use that platform.
+    -->
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.Testing" />
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestingGhrepotemplate.AppHost\TestingGhrepotemplate.AppHost.csproj" />
+    <ProjectReference Include="..\TestingGhrepotemplate.Cqs\TestingGhrepotemplate.Cqs.csproj" />
+  </ItemGroup>
+
+</Project>

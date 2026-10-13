@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>TestingGhrepotemplate.Cqs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="softaware.CQS" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestingGhrepotemplate.EntityFramework\TestingGhrepotemplate.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Update="Microsoft.SourceLink.GitHub" Version="10.0.401" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

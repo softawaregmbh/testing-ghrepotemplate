@@ -1,0 +1,15 @@
+using Microsoft.AspNetCore.Routing;
+
+namespace TestingGhrepotemplate.Cqs.Api;
+
+public static class CqsEndpoints
+{
+    public static RouteGroupBuilder MapCqsEndpoints(this RouteGroupBuilder endpoints)
+    {
+        {{~ for group in Groups ~}}
+        endpoints.MapGroup("{{ group }}").WithTags("{{ group }}").Map{{ group }}Endpoints();
+        {{~ end ~}}
+
+        return endpoints;
+    }
+}
